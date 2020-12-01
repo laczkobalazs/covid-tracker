@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 function DataProvider() {
-  const [globalData, setGlobalData] = useState([]);
+  const [globalData, setGlobalData] = useState({});
 
   useEffect(() => {
     const apiURL = "https://disease.sh/v3/covid-19/all"
