@@ -4,8 +4,9 @@ function App() {
   
   return (
     <div className="App">
-      <Dataprovider/>
+      
       <h1>Hello, I am the COVID Tracker App!</h1>
+      <Dataprovider/>
     </div>
   );
 }
