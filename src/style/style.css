@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+}
+
+body {
+  background-color: antiquewhite;
+}
+
+.global-container {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #f5f6fa;
+  padding: 20px;
+}
+
+.global-data-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}

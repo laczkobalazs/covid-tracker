@@ -2,7 +2,8 @@ import React,  { useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from '@material-ui/core/Card'
 import Grid from '@material-ui/core/Grid'
-import "../style/card.css"
+import '../style/card.css'
+import '../style/style.css'
 
 
 function DataProvider() {
@@ -21,9 +22,9 @@ function DataProvider() {
 
 
   return (
-    <div>
+    <div className="global-container">
       <div className="global-data-container">
-        <Grid container spacing={20}>
+        <Grid container>
 
         
           <Card className="mdc-card">
