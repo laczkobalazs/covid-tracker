@@ -11,13 +11,13 @@ function DataProvider() {
   const [globalData, setGlobalData] = useState({});
   const [countryData, setCountryData] = useState([])
   const [countryList, setCountrylist] = useState([])
+  const [country, setCountry] = useState("worldwide")
 
   useEffect(() => {
     const apiURL = "https://disease.sh/v3/covid-19/all"
     axios.get(apiURL)
       .then((response) => {
         setGlobalData(response.data)
-        console.log(response.data)
       })
       .catch((err) => console.log(err));
     
@@ -31,48 +31,48 @@ function DataProvider() {
           name: country.country,
           value: country.countryInfo.iso2,
         }))
-
         setCountryData(response.data)
         setCountrylist(countries)
-        console(countries)
-        console.log(response.data)
       })
       .catch((err) => console.log(err));
   }, [])
 
+  const onCountryChange = (event) => {
+    const countryCode = event.target.value;
+    setCountry(countryCode)
+  }
+
   return (
     <div className="global-container">
-      <h1>Hello, I am the COVID Tracker App!</h1>
-      <FormControl className="app_dropdown">
-        <Select variant="outlined" value="abc">
-          {countryList.map((country) => (
-            <MenuItem value={country.value} key={country.value}>{country.name}</MenuItem>
-          ))}
-
-          <MenuItem value="worldwide">Worldwide</MenuItem>
-          <MenuItem value="worldwide">Option 2</MenuItem>
-          <MenuItem value="worldwide">Option 3</MenuItem>
-          <MenuItem value="worldwide">Option 4</MenuItem>
-        </Select>
-      </FormControl>
+      <div className="global-container-header">
+        <h1>Hello, I am the COVID Tracker App!</h1>
+        <FormControl className="app_dropdown">
+          <Select variant="outlined" value={country} onChange={onCountryChange}>
+            <MenuItem value="worldwide">Worldwide</MenuItem>
+            {countryList.map((country) => (
+              <MenuItem value={country.value} key={country.name}>{country.name}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </div>
+      
       <div className="global-data-container">
-
           <Grid container>
             <Card className="mdc-card">
               <h1>
-                Global cases
+                Cases
               </h1>
               <h2>{globalData.cases}</h2>
             </Card>
             <Card className="mdc-card">
               <h1>
-                Deaths
+                Recovered
               </h1>
               <h2>{globalData.deaths}</h2>
             </Card>
             <Card className="mdc-card">
               <h1>
-                Recovered
+                Deaths
               </h1>
               <h2>{globalData.recovered}</h2>
             </Card>

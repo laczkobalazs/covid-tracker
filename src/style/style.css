@@ -6,7 +6,7 @@ body {
   background-color: antiquewhite;
 }
 
-.global-container {
+.global-container-header {
   display: flex;
   align-items: center;
   margin-bottom: 20em;
