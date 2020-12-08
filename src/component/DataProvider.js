@@ -2,6 +2,7 @@ import React,  { useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from '@material-ui/core/Card'
 import Grid from '@material-ui/core/Grid'
+import { MenuItem, FormControl, Select } from '@material-ui/core'
 import '../style/card.css'
 import '../style/style.css'
 
@@ -25,8 +26,6 @@ function DataProvider() {
     <div className="global-container">
       <div className="global-data-container">
         <Grid container>
-
-        
           <Card className="mdc-card">
             <h1>
               Global cases
@@ -45,7 +44,11 @@ function DataProvider() {
             </h1>
             <h2>{globalData.recovered}</h2>
           </Card>
+    
         </Grid>
+        <FormControl>
+
+        </FormControl>
       </div>
       
     </div>
