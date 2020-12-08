@@ -9,29 +9,45 @@ import '../style/style.css'
 
 function DataProvider() {
   const [globalData, setGlobalData] = useState({});
-  const [countryList, setCountryList] = useState([])
+  const [countryData, setCountryData] = useState([])
+  const [countryList, setCountrylist] = useState([])
 
   useEffect(() => {
     const apiURL = "https://disease.sh/v3/covid-19/all"
-    const countryListApiURL = "https://disease.sh/v3/covid-19/countries"
     axios.get(apiURL)
       .then((response) => {
         setGlobalData(response.data)
         console.log(response.data)
       })
       .catch((err) => console.log(err));
-    axios.get()
+    
   }, [])
 
+  useEffect(() => {
+    const countryListApiURL = "https://disease.sh/v3/covid-19/countries"
+    axios.get(countryListApiURL)
+      .then((response) => {
+        const countries = response.data.map((country) => ({
+          name: country.country,
+          value: country.countryInfo.iso2,
+        }))
+
+        setCountryData(response.data)
+        setCountrylist(countries)
+        console(countries)
+        console.log(response.data)
+      })
+      .catch((err) => console.log(err));
+  }, [])
 
   return (
     <div className="global-container">
       <h1>Hello, I am the COVID Tracker App!</h1>
       <FormControl className="app_dropdown">
         <Select variant="outlined" value="abc">
-          {countryList.map((country) => {}
-            
-          )}
+          {countryList.map((country) => (
+            <MenuItem value={country.value} key={country.value}>{country.name}</MenuItem>
+          ))}
 
           <MenuItem value="worldwide">Worldwide</MenuItem>
           <MenuItem value="worldwide">Option 2</MenuItem>
