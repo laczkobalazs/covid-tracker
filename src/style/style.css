@@ -6,10 +6,13 @@ body {
   background-color: antiquewhite;
 }
 
+.global-container-left {
+}
+
 .global-container-header {
   display: flex;
   align-items: center;
-  margin-bottom: 20em;
+  margin-bottom: 1em;
   justify-content: space-between;
   background-color: #f5f6fa;
   padding: 20px;

@@ -3,6 +3,7 @@ import axios from 'axios';
 import Card from '@material-ui/core/Card'
 import Grid from '@material-ui/core/Grid'
 import InfoBox from './InfoBox'
+import Map from './Map'
 import { MenuItem, FormControl, Select } from '@material-ui/core'
 import '../style/card.css'
 import '../style/style.css'
@@ -45,27 +46,27 @@ function DataProvider() {
 
   return (
     <div className="global-container">
-      <div className="global-container-header">
-        <h1>Hello, I am the COVID Tracker App!</h1>
-        <FormControl className="app_dropdown">
-          <Select variant="outlined" value={country} onChange={onCountryChange}>
-            <MenuItem value="worldwide">Worldwide</MenuItem>
-            {countryList.map((country) => (
-              <MenuItem value={country.value} key={country.name}>{country.name}</MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </div>
-      <div className="container-statistics">
-        <InfoBox title="Coronavirus Cases" cases={10002300} total={2000}/>
-
-        <InfoBox title="Recoveries" cases={10102000} total={2000}/>
-
-        <InfoBox title="Death" cases={100012000} total={2000}/>
-      </div>
-
-
-      <div className="global-data-container">
+      <div className="global-container-left">
+        <div className="global-container-header">
+          <h1>Hello, I am the COVID Tracker App!</h1>
+          <FormControl className="app_dropdown">
+            <Select variant="outlined" value={country} onChange={onCountryChange}>
+              <MenuItem value="worldwide">Worldwide</MenuItem>
+              {countryList.map((country) => (
+                <MenuItem value={country.value} key={country.name}>{country.name}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+        <div className="container-statistics">
+          <InfoBox title="Coronavirus Cases" cases={10002300} total={2000}/>
+          <InfoBox title="Recoveries" cases={10102000} total={2000}/>
+          <InfoBox title="Death" cases={100012000} total={2000}/>
+        </div>
+        <div className="map-container">
+          <Map/>
+        </div>
+        <div className="global-data-container">
           <Grid container>
             <Card className="mdc-card">
               <h1>
@@ -86,9 +87,9 @@ function DataProvider() {
               <h2>{globalData.recovered}</h2>
             </Card>
           </Grid>
-
+        </div>
       </div>
-
+      <Card className="global-container-right"></Card>
     </div>
   )
 }
