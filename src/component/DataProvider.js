@@ -42,7 +42,14 @@ function DataProvider() {
   const onCountryChange = (event) => {
     const countryCode = event.target.value;
     setCountry(countryCode)
-  }
+
+    const url = countryCode === "worldwide" ? "https://disease.sh/v3/covid-19/all" : `https://disease.sh/v3/covid-19/countries/${countryCode}`
+    axios.get(url)
+    .then((res) => {
+      setCountry(countryCode)
+      setCountryData(res.data)
+    })
+  };
 
   return (
     <div className="global-container">
