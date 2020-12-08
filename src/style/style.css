@@ -6,7 +6,14 @@ body {
   background-color: antiquewhite;
 }
 
+.global-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1em;
+}
+
 .global-container-left {
+  flex: 0.9;
 }
 
 .global-container-header {
@@ -28,4 +35,10 @@ body {
   align-items: center;
   margin-bottom: 20px;
   justify-content: space-between;
+}
+
+@media (max-width: 990px) {
+  .global-container {
+    flex-direction: column;
+  }
 }

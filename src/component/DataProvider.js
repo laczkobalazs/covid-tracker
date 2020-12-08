@@ -1,10 +1,10 @@
 import React,  { useState, useEffect } from 'react';
 import axios from 'axios';
-import Card from '@material-ui/core/Card'
+
 import Grid from '@material-ui/core/Grid'
 import InfoBox from './InfoBox'
 import Map from './Map'
-import { MenuItem, FormControl, Select } from '@material-ui/core'
+import { MenuItem, FormControl, Select, Table, Card, CardContent } from '@material-ui/core'
 import '../style/card.css'
 import '../style/style.css'
 
@@ -67,29 +67,19 @@ function DataProvider() {
           <Map/>
         </div>
         <div className="global-data-container">
-          <Grid container>
-            <Card className="mdc-card">
-              <h1>
-                Cases
-              </h1>
-              <h2>{globalData.cases}</h2>
-            </Card>
-            <Card className="mdc-card">
-              <h1>
-                Recovered
-              </h1>
-              <h2>{globalData.deaths}</h2>
-            </Card>
-            <Card className="mdc-card">
-              <h1>
-                Deaths
-              </h1>
-              <h2>{globalData.recovered}</h2>
-            </Card>
-          </Grid>
+          
         </div>
       </div>
-      <Card className="global-container-right"></Card>
+      <Card className="global-container-right">
+        <CardContent>
+          <div className="app__information">
+            <h3>Live Cases by Country</h3>
+            {/* <Table countries={tableData} />
+            <h3>Worldwide new {casesType}</h3>
+            <LineGraph casesType={casesType} /> */}
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }
