@@ -46,7 +46,7 @@ function DataProvider() {
     const url = countryCode === "worldwide" ? "https://disease.sh/v3/covid-19/all" : `https://disease.sh/v3/covid-19/countries/${countryCode}`
     axios.get(url)
     .then((res) => {
-      setCountry(countryCode)
+      
       setCountryData(res.data)
     })
   };
@@ -66,9 +66,9 @@ function DataProvider() {
           </FormControl>
         </div>
         <div className="container-statistics">
-          <InfoBox title="Coronavirus Cases" cases={10002300} total={2000}/>
-          <InfoBox title="Recoveries" cases={10102000} total={2000}/>
-          <InfoBox title="Death" cases={100012000} total={2000}/>
+          <InfoBox title="Coronavirus Cases" cases={countryData.todayCases} total={countryData.cases}/>
+          <InfoBox title="Recoveries" cases={countryData.todayRecovered} total={countryData.recovered}/>
+          <InfoBox title="Death" cases={countryData.todayDeaths} total={countryData.deaths}/>
         </div>
         <div className="map-container">
           <Map/>
