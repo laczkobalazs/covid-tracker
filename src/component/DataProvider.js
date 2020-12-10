@@ -1,6 +1,6 @@
 import React,  { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import Table from './Table'
 import Grid from '@material-ui/core/Grid'
 import InfoBox from './InfoBox'
 import Map from './Map'
