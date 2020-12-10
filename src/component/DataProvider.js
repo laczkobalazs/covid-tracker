@@ -7,13 +7,15 @@ import Map from './Map'
 import { MenuItem, FormControl, Select, Card, CardContent } from '@material-ui/core'
 import '../style/card.css'
 import '../style/style.css'
+import { sortData } from '../util.js'
 
 
 function DataProvider() {
   const [globalData, setGlobalData] = useState({});
   const [countryData, setCountryData] = useState([])
-  const [countryList, setCountrylist] = useState([])
+  const [countryNameList, setCountryNamelist] = useState([])
   const [country, setCountry] = useState("worldwide")
+  const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
     const apiURL = "https://disease.sh/v3/covid-19/all"
@@ -31,7 +33,9 @@ function DataProvider() {
       .then((response) => {
         const countries = response.data.map((country) => (country.country))
         setCountryData(response.data)
-        setCountrylist(countries)
+        setCountryNamelist(countries)
+        let sortedData = sortData(response.data);
+        setTableData(sortedData)
       })
       .catch((err) => console.log(err));
   }, [])
@@ -56,7 +60,7 @@ function DataProvider() {
           <FormControl className="app_dropdown">
             <Select variant="outlined" value={country} onChange={onCountryChange}>
               <MenuItem value="worldwide">Worldwide</MenuItem>
-              {countryList.map((country) => (
+              {countryNameList.map((country) => (
                 <MenuItem value={country} key={country}>{country}</MenuItem>
               ))}
             </Select>
@@ -78,7 +82,7 @@ function DataProvider() {
         <CardContent>
           <div className="app__information">
             <h3>Live Cases by Country</h3>
-            <Table countries={countryData} />
+            <Table countries={tableData} />
             {/* <h3>Worldwide new {casesType}</h3>
             <LineGraph casesType={casesType} /> */}
           </div>
