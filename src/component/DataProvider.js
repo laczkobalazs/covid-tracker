@@ -4,7 +4,7 @@ import Table from './Table'
 import Grid from '@material-ui/core/Grid'
 import InfoBox from './InfoBox'
 import Map from './Map'
-import { MenuItem, FormControl, Select, Table, Card, CardContent } from '@material-ui/core'
+import { MenuItem, FormControl, Select, Card, CardContent } from '@material-ui/core'
 import '../style/card.css'
 import '../style/style.css'
 
@@ -78,9 +78,9 @@ function DataProvider() {
         <CardContent>
           <div className="app__information">
             <h3>Live Cases by Country</h3>
-            <Table countries={tableData} />
-            <h3>Worldwide new {casesType}</h3>
-            <LineGraph casesType={casesType} />
+            <Table countries={countryData} />
+            {/* <h3>Worldwide new {casesType}</h3>
+            <LineGraph casesType={casesType} /> */}
           </div>
         </CardContent>
       </Card>
