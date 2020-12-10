@@ -29,10 +29,7 @@ function DataProvider() {
     const countryListApiURL = "https://disease.sh/v3/covid-19/countries"
     axios.get(countryListApiURL)
       .then((response) => {
-        const countries = response.data.map((country) => ({
-          name: country.country,
-          value: country.countryInfo.iso2,
-        }))
+        const countries = response.data.map((country) => (country.country))
         setCountryData(response.data)
         setCountrylist(countries)
       })
@@ -60,7 +57,7 @@ function DataProvider() {
             <Select variant="outlined" value={country} onChange={onCountryChange}>
               <MenuItem value="worldwide">Worldwide</MenuItem>
               {countryList.map((country) => (
-                <MenuItem value={country.value} key={country.name}>{country.name}</MenuItem>
+                <MenuItem value={country} key={country}>{country}</MenuItem>
               ))}
             </Select>
           </FormControl>
@@ -81,9 +78,9 @@ function DataProvider() {
         <CardContent>
           <div className="app__information">
             <h3>Live Cases by Country</h3>
-            {/* <Table countries={tableData} />
+            <Table countries={tableData} />
             <h3>Worldwide new {casesType}</h3>
-            <LineGraph casesType={casesType} /> */}
+            <LineGraph casesType={casesType} />
           </div>
         </CardContent>
       </Card>
