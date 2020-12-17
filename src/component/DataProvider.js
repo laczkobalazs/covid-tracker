@@ -83,8 +83,8 @@ function DataProvider() {
           <div className="app__information">
             <h3>Live Cases by Country</h3>
             <Table countries={tableData} />
-            {/* <h3>Worldwide new {casesType}</h3>
-            <LineGraph casesType={casesType} /> */}
+            <h3>Worldwide new cases</h3>
+            <LineGraph />
           </div>
         </CardContent>
       </Card>
