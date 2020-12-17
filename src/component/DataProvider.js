@@ -38,7 +38,7 @@ function DataProvider() {
         setCountryNamelist(countries)
         let sortedData = sortData(response.data);
         setTableData(sortedData)
-        console.log(tableData)
+        console.log(countryData)
       })
       .catch((err) => console.log(err));
   }, [])
@@ -79,6 +79,7 @@ function DataProvider() {
         <div className="global-data-container">
           
         </div>
+        <Map/>
       </div>
       <Card className="global-container-right">
         <CardContent>
