@@ -19,6 +19,8 @@ function DataProvider() {
   const [country, setCountry] = useState("worldwide")
   const [tableData, setTableData] = useState([]);
   const [caseType, setCaseType] = useState("cases")
+  const [mapCenter, setMapCenter] = useState([49.5, 19.0])
+  const [mapZoom, setMapZoom] = useState(4)
 
   useEffect(() => {
     const apiURL = "https://disease.sh/v3/covid-19/all"
@@ -75,7 +77,7 @@ function DataProvider() {
           <InfoBox title="Death" cases={countryData.todayDeaths} total={countryData.deaths}/>
         </div>
         <div className="map-container">
-          <Map/>
+          <Map center={mapCenter} zoom={mapZoom}/>
         </div>
         <div className="global-data-container">
           
