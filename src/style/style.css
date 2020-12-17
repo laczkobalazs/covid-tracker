@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: antiquewhite;
+  background-color: #eee8e4;
 }
 
 .global-container {
@@ -21,7 +21,7 @@ body {
   align-items: center;
   margin-bottom: 1em;
   justify-content: space-between;
-  background-color: #f5f6fa;
+  background-color: #ffffff;
   padding: 20px;
 }
 
