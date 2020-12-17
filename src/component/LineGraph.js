@@ -1,4 +1,3 @@
-import Axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { Line } from 'react-chartjs-2'
 import axios from 'axios';
@@ -34,7 +33,7 @@ function LineGraph({ caseType }) {
         {
           type: "time",
           time: {
-            format: "MM/DD/YY",
+            parser: "MM/DD/YY",
             tooltipFormat: "ll",
           },
         },
@@ -74,10 +73,8 @@ function LineGraph({ caseType }) {
   useEffect(() => {
     axios.get(historicalURL)
       .then((response) => {
-        console.log(response.data.cases)
         let chartData = buildChartData(response.data, caseType);
         setGraphData(chartData)
-        console.log(chartData)
       })
     
   }, [caseType])
