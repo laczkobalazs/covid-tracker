@@ -54,7 +54,7 @@ function DataProvider() {
     await axios.get(url)
     .then((res) => {
       setCountryData(res.data)
-      countryCode !== "worldwide" ? setMapCenter([res.data.countryInfo.lat, res.data.countryInfo.long]) : setMapCenter([0, 0])
+      
       setMapZoom(4)
       
     })
@@ -93,7 +93,7 @@ function DataProvider() {
             <h3>Live Cases by Country</h3>
             <Table countries={tableData} />
             <h3>Worldwide new cases</h3>
-            <LineGraph caseType={caseType} />
+            <LineGraph caseType={caseType} />const url = countryCode === "worldwide" ? "https://disease.sh/v3/covid-19/all" : `https://disease.sh/v3/covid-19/countries/${countryCode}`
           </div>
         </CardContent>
       </Card>
