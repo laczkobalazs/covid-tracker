@@ -54,7 +54,7 @@ function DataProvider() {
     await axios.get(url)
     .then((res) => {
       setCountryData(res.data)
-      
+      countryCode !== "worldwide" ? setMapCenter([res.data.countryInfo.lat, res.data.countryInfo.long]) : setMapCenter([0, 0])
       setMapZoom(4)
       
     })
