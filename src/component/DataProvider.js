@@ -79,7 +79,7 @@ function DataProvider() {
         <div className="global-data-container">
           
         </div>
-        <Map/>
+        
       </div>
       <Card className="global-container-right">
         <CardContent>
