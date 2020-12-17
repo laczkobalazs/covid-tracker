@@ -3,11 +3,13 @@ import axios from 'axios';
 import Table from './Table'
 import Grid from '@material-ui/core/Grid'
 import InfoBox from './InfoBox'
+import LineGraph from './LineGraph'
 import Map from './Map'
 import { MenuItem, FormControl, Select, Card, CardContent } from '@material-ui/core'
 import '../style/card.css'
 import '../style/style.css'
 import { sortData } from '../util.js'
+import "leaflet/dist/leaflet.css";
 
 
 function DataProvider() {
@@ -16,6 +18,9 @@ function DataProvider() {
   const [countryNameList, setCountryNamelist] = useState([])
   const [country, setCountry] = useState("worldwide")
   const [tableData, setTableData] = useState([]);
+  const [caseType, setCaseType] = useState("cases")
+  const [mapCenter, setMapCenter] = useState([49.5, 19.0])
+  const [mapZoom, setMapZoom] = useState(3)
 
   useEffect(() => {
     const apiURL = "https://disease.sh/v3/covid-19/all"
@@ -36,19 +41,22 @@ function DataProvider() {
         setCountryNamelist(countries)
         let sortedData = sortData(response.data);
         setTableData(sortedData)
+        // console.log(countryData)
       })
       .catch((err) => console.log(err));
   }, [])
 
-  const onCountryChange = (event) => {
+  const onCountryChange = async (event) => {
     const countryCode = event.target.value;
     setCountry(countryCode)
 
     const url = countryCode === "worldwide" ? "https://disease.sh/v3/covid-19/all" : `https://disease.sh/v3/covid-19/countries/${countryCode}`
-    axios.get(url)
+    await axios.get(url)
     .then((res) => {
-      
       setCountryData(res.data)
+      countryCode !== "worldwide" ? setMapCenter([res.data.countryInfo.lat, res.data.countryInfo.long]) : setMapCenter([0, 0])
+      setMapZoom(4)
+      
     })
   };
 
@@ -72,19 +80,20 @@ function DataProvider() {
           <InfoBox title="Death" cases={countryData.todayDeaths} total={countryData.deaths}/>
         </div>
         <div className="map-container">
-          <Map/>
+          <Map center={mapCenter} zoom={mapZoom}/>
         </div>
         <div className="global-data-container">
           
         </div>
+        
       </div>
       <Card className="global-container-right">
         <CardContent>
           <div className="app__information">
             <h3>Live Cases by Country</h3>
             <Table countries={tableData} />
-            {/* <h3>Worldwide new {casesType}</h3>
-            <LineGraph casesType={casesType} /> */}
+            <h3>Worldwide new cases</h3>
+            <LineGraph caseType={caseType} />
           </div>
         </CardContent>
       </Card>
