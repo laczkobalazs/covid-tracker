@@ -38,6 +38,7 @@ function DataProvider() {
         setCountryNamelist(countries)
         let sortedData = sortData(response.data);
         setTableData(sortedData)
+        console.log(tableData)
       })
       .catch((err) => console.log(err));
   }, [])
