@@ -12,7 +12,8 @@ function LineGraph() {
   useEffect(() => {
     axios.get(historicalURL)
       .then((response) => {
-        setData(response.data)
+        const chartData = buildChartData(response.data);
+        setData(chartData)
       })
     
   }, [])
