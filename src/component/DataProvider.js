@@ -3,6 +3,7 @@ import axios from 'axios';
 import Table from './Table'
 import Grid from '@material-ui/core/Grid'
 import InfoBox from './InfoBox'
+import LineGraph from './LineGraph'
 import Map from './Map'
 import { MenuItem, FormControl, Select, Card, CardContent } from '@material-ui/core'
 import '../style/card.css'
