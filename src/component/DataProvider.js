@@ -9,6 +9,7 @@ import { MenuItem, FormControl, Select, Card, CardContent } from '@material-ui/c
 import '../style/card.css'
 import '../style/style.css'
 import { sortData } from '../util.js'
+import "leaflet/dist/leaflet.css";
 
 
 function DataProvider() {
