@@ -3,6 +3,7 @@ import axios from 'axios';
 import Table from './Table'
 import Grid from '@material-ui/core/Grid'
 import InfoBox from './InfoBox'
+import LineGraph from './LineGraph'
 import Map from './Map'
 import { MenuItem, FormControl, Select, Card, CardContent } from '@material-ui/core'
 import '../style/card.css'
@@ -16,6 +17,7 @@ function DataProvider() {
   const [countryNameList, setCountryNamelist] = useState([])
   const [country, setCountry] = useState("worldwide")
   const [tableData, setTableData] = useState([]);
+  const [caseType, setCaseType] = useState("cases")
 
   useEffect(() => {
     const apiURL = "https://disease.sh/v3/covid-19/all"
@@ -36,6 +38,7 @@ function DataProvider() {
         setCountryNamelist(countries)
         let sortedData = sortData(response.data);
         setTableData(sortedData)
+        console.log(countryData)
       })
       .catch((err) => console.log(err));
   }, [])
@@ -47,7 +50,6 @@ function DataProvider() {
     const url = countryCode === "worldwide" ? "https://disease.sh/v3/covid-19/all" : `https://disease.sh/v3/covid-19/countries/${countryCode}`
     axios.get(url)
     .then((res) => {
-      
       setCountryData(res.data)
     })
   };
@@ -77,14 +79,15 @@ function DataProvider() {
         <div className="global-data-container">
           
         </div>
+        <Map/>
       </div>
       <Card className="global-container-right">
         <CardContent>
           <div className="app__information">
             <h3>Live Cases by Country</h3>
             <Table countries={tableData} />
-            {/* <h3>Worldwide new {casesType}</h3>
-            <LineGraph casesType={casesType} /> */}
+            <h3>Worldwide new cases</h3>
+            <LineGraph caseType={caseType} />
           </div>
         </CardContent>
       </Card>
