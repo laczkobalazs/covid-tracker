@@ -17,6 +17,7 @@ function DataProvider() {
   const [countryNameList, setCountryNamelist] = useState([])
   const [country, setCountry] = useState("worldwide")
   const [tableData, setTableData] = useState([]);
+  const [caseType, setCaseType] = useState("cases")
 
   useEffect(() => {
     const apiURL = "https://disease.sh/v3/covid-19/all"
@@ -48,7 +49,6 @@ function DataProvider() {
     const url = countryCode === "worldwide" ? "https://disease.sh/v3/covid-19/all" : `https://disease.sh/v3/covid-19/countries/${countryCode}`
     axios.get(url)
     .then((res) => {
-      
       setCountryData(res.data)
     })
   };
@@ -85,7 +85,7 @@ function DataProvider() {
             <h3>Live Cases by Country</h3>
             <Table countries={tableData} />
             <h3>Worldwide new cases</h3>
-            <LineGraph />
+            <LineGraph caseType={caseType} />
           </div>
         </CardContent>
       </Card>
