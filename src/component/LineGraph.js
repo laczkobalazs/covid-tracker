@@ -7,7 +7,7 @@ function LineGraph({ caseType }) {
 
   const [graphData, setGraphData] = useState({})
 
-  const historicalURL =  "https://disease.sh/v3/covid-19/historical/all?lastdays=120"
+  const historicalURL =  "https://disease.sh/v3/covid-19/historical/all?lastdays=30"
 
   const options = {
     legend: {
